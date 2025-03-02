@@ -9,9 +9,40 @@
 <body>
     <section class="container">
         <h1>The Journey Continues</h1>
-        <p>You've solved the riddle and passed the guardian's challenge. The journey ahead is filled with more trials and rewards.</p>
-        <p>Continue your quest, brave adventurer!</p>
+        <p>With the guardian's riddle behind you, the path forward splits into three. Each route is known to favor certain traits: strength, wisdom, or stealth. Choose your path wisely, as it will influence the challenges you face ahead.</p>
+        <p>Your choice will not only test your abilities but also reveal deeper truths about your character.</p>
+        
+        <form id="pathForm">
+            <label for="pathChoice">Choose your path:</label>
+            <select id="pathChoice" name="pathChoice" required>
+                <option value="">--Please choose an option--</option>
+                <option value="strength">The Path of Strength</option>
+                <option value="wisdom">The Path of Wisdom</option>
+                <option value="stealth">The Path of Stealth</option>
+            </select>
+            <button type="submit">Continue on Your Journey</button>
+        </form>
     </section>
+
+    <script>
+        document.getElementById("pathForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const selectedPath = document.getElementById("pathChoice").value;
+            if (selectedPath === "stealth") {
+                window.location.href = "page5b.html";
+            } else {
+                window.location.href = "page6.html";
+            }
+        });
+
+        document.getElementById("pathChoice").addEventListener("change", function() {
+            const colorMap = {
+                "strength": "#ffcccc",
+                "wisdom": "#ccffcc",
+                "stealth": "#ccccff"
+            };
+            document.body.style.backgroundColor = colorMap[this.value] || "white";
+        });
+    </script>
 </body>
 </html>
-
