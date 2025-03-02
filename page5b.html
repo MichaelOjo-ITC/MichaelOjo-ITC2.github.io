@@ -3,19 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Path Forks</title>
+    <title>The Path of Stealth</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <section class="container">
-        <h1>The Path Forks</h1>
-        <p>The path ahead splits into two directions. The left path leads deeper into the forest, while the right path ascends toward a mountain pass. Each path promises its own set of challenges. Choose wisely.</p>
-        <form method="get" action="page6.html">
-            <label><input type="radio" name="path" value="forest" required> Take the Forest Path</label><br>
-            <label><input type="radio" name="path" value="mountain"> Take the Mountain Path</label><br>
-            <input type="submit" value="Choose Path">
-        </form>
+        <h1>The Path of Stealth</h1>
+        <p>To successfully navigate the Path of Stealth, you must choose your actions carefully. Select the correct sequence of actions to avoid detection and reach your objective.</p>
+
+        <div id="actions">
+            <div class="stealth-option" data-action="hide">Hide in the shadows</div>
+            <div class="stealth-option" data-action="run">Run quickly to the next cover</div>
+            <div class="stealth-option" data-action="distract">Create a distraction</div>
+            <div class="stealth-option" data-action="wait">Wait for the right moment</div>
+        </div>
+
+        <button id="checkSequence">Check Sequence</button>
+        <button id="reset">Reset!</button>
     </section>
+
+    <script>
+        const correctSequence = ['hide', 'wait', 'distract'];
+        let userSequence = [];
+
+        document.querySelectorAll(".stealth-option").forEach(option => {
+            option.addEventListener("click", function() {
+                userSequence.push(this.getAttribute("data-action"));
+                this.style.backgroundColor = "#add8e6";
+            });
+        });
+
+        document.getElementById("checkSequence").addEventListener("click", function() {
+            if (JSON.stringify(userSequence) === JSON.stringify(correctSequence)) {
+                alert("You have successfully navigated the path of stealth!");
+                window.location.href = "page6.html";
+            } else {
+                alert("Wrong sequence! Try again.");
+                userSequence = [];
+                document.querySelectorAll(".stealth-option").forEach(option => {
+                    option.style.backgroundColor = "";
+                });
+            }
+        });
+
+        document.getElementById("reset").addEventListener("click", function() {
+            userSequence = [];
+            document.querySelectorAll(".stealth-option").forEach(option => {
+                option.style.backgroundColor = "";
+            });
+        });
+    </script>
 </body>
 </html>
-
